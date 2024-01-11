@@ -18,10 +18,25 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
+}
+.title h3 {
+  color: #000000;
+  font-weight: 600;
+  font-size: 18px;
+}
+.color-primary {
+  background-color: rgba(70, 120, 243, 1);
+}
+.login {
+  border: 1px solid rgba(226, 221, 221, 1);
+  position: relative;
+  margin-top: 5px;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(248, 248, 248, 1);
+  padding-top: 38px;
+  width: 460px;
+  margin-left: auto;
+  margin-right: auto;
 }

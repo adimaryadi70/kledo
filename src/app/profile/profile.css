@@ -1,0 +1,28 @@
+.box-profile {
+    position: relative;
+    border: 1px solid rgba(226, 221, 221, 1);
+    width: 483px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    background-color: rgba(248, 248, 248, 1);
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+.box-profile .box-list h3 {
+    color: rgba(128, 128, 128, 1);
+    font-size: 18px;
+    font-weight: 700;
+}
+.box-profile .box-list {
+    position: relative;
+    margin-bottom: 15px;
+}
+.box-profile .box-list p {
+    color: rgba(0, 0, 0, 1);
+    font-size: 13px;
+    font-weight: 600;
+}
