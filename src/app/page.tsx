@@ -6,9 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import {AuthenticationInterfaces} from "../model/authentication/authentication-interfaces";
 import {useState} from "react";
 import {AuthenticationServices} from "../services/authentication/authentication-services";
-import {NotificationError, ResponseServices, SaveLocalStorage} from "../utility/tools";
-import {NotificationContainer} from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
+import {NotificationError, ResponseServices, SaveStorage} from "../utility/tools";
 
 export default function Home() {
   const router = useRouter();
@@ -34,9 +32,13 @@ export default function Home() {
              return NotificationError(e);
           });
   };
+
+  useState(() => {
+     SaveStorage();
+  });
+
   return (
       <div className={'body'}>
-        <NotificationContainer />
         <Header />
         <div className={'title text-center mt-[94px] mb-[21px]'}>
             <h3 className={'font-bold text-[28px]'}>Login</h3>
@@ -48,7 +50,6 @@ export default function Home() {
                     <input
                         type="email"
                         id="email"
-                        name="email"
                         {...register('email',{required: 'Email di wajibkan'})}
                         className={errors.email ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[8px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
                     />
@@ -59,7 +60,6 @@ export default function Home() {
                     <input
                         type="password"
                         id="password"
-                        name="password"
                         {...register('password',{required: 'Password di wajibkan'})}
                         className={errors.password ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[8px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
                     />

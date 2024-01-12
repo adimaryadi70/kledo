@@ -1,20 +1,24 @@
-import useLocalStorage from "use-local-storage";
-import {NotificationManager} from 'react-notifications';
-export const NotificationError = (error) => {
+import NextCrypto from 'next-crypto';
+const crypto = new NextCrypto('Mahmud');
+
+export const NotificationError = (error: any) => {
     if (error.response !== undefined) {
-        return NotificationManager.error(error.response.data.message, '', 5000);
+        console.log(error);
     }
 };
 
-export const ResponseServices: (data) => (boolean) = (data) => {
+export const ResponseServices: (data: any) => (boolean) = (data) => {
     if (data.data.success) {
         return true;
     }
     return false;
 };
 
-export const SaveLocalStorage = (key: string, data: any) => {
-
+export const SaveStorage = async () => {
+    const encrypted = await crypto.encrypt('hello!');
+    const decrypted = await crypto.decrypt(encrypted);
+    console.log(encrypted);
+    console.log(decrypted);
 };
 
 export const ReadLocalStorage = (key: string) => {

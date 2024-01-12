@@ -3,7 +3,7 @@ import {Header} from "../../components/common/header";
 import * as React from "react";
 import {Siderbar} from "../../components/dashboard/sidebar";
 
-export default function LayoutDashboard({ children }) {
+export default function LayoutDashboard({ children } : any) {
     return (
         <div className={'dashboard'}>
             <Header />
