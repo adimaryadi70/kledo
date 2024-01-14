@@ -8,16 +8,15 @@ import {useState} from "react";
 import {AuthenticationServices} from "../../services/authentication/authentication-services";
 import {NotificationError, ResponseServices} from "../../utility/tools";
 import { useDispatch, useSelector } from 'react-redux';
-// import { decrement, increment } from '@/lib/feature/counter/counterSlice';
 import { RootState } from '@/lib/store';
+import { SaveStorageRedux } from '@/lib/feature/storage/storageStore';
 
 export const PagesLogin = () => {
     const router = useRouter();
     const { register, handleSubmit, formState } = useForm<AuthenticationInterfaces>();
     const { errors } = formState;
     const [isLoading, setLoading] = useState(false);
-    // const dispatch = useDispatch();
-    // const count = useSelector((state: RootState) => state.counter.count);
+    const dispatch = useDispatch();
     const onSubmit: SubmitHandler<AuthenticationInterfaces> = (data) => {
         console.log(data);
         setLoading(true);
@@ -29,6 +28,11 @@ export const PagesLogin = () => {
             .then((result) => {
                if (ResponseServices(result)) {
                    setLoading(false);
+                   let save = {
+                        data: result.data.data.data.access_token,
+                        key: 'token'
+                   };
+                   dispatch(SaveStorageRedux(save));
                    return router.push('/dashboard/home');
                }
             })
@@ -37,18 +41,9 @@ export const PagesLogin = () => {
                return NotificationError(e);
             });
     };
-    // const handleIncrement = () => {
-    //     dispatch(increment());
-    // };
-    // const handleDecrement = () => {
-    //     dispatch(decrement());
-    // };
     return (
         <div className={'body'}>
             <Header />
-            {/* <h3>Nomor {count}</h3>
-            <button onClick={handleIncrement} >Tambah</button>
-            <button onClick={handleDecrement} >Kurang</button> */}
             <div className={'title text-center mt-[94px] mb-[21px]'}>
                 <h3 className={'font-bold text-[28px]'}>Login</h3>
             </div>

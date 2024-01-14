@@ -10,7 +10,7 @@ const initialState: CounterState = {
 };
 
 // Create a Redux slice
-const counterSlice = createSlice({
+const counterSlice: any = createSlice({
   name: 'counter',
   initialState,
   reducers: {

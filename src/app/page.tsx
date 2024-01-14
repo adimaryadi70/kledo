@@ -3,9 +3,13 @@ import * as React from "react";
 import {useState} from "react";
 import {ReadStorage, SaveStorage} from "../utility/tools";
 import StoreProvider from './StoreProvider';
+import StorageProvider from "./StorageProvider";
 import { PagesLogin } from '@/components/login/pages-login';
 
 export default function Home() {
+  const initial = {
+    data: null
+  };
 
   useState(() => {
      SaveStorage('stest', ["asdad","asdiadjiadj","asdjiadjiadiwji"]);
@@ -15,8 +19,8 @@ export default function Home() {
   });
 
   return (
-    <StoreProvider count={1}>
+    <StorageProvider data={initial}>
       <PagesLogin />
-    </StoreProvider>
+    </StorageProvider>
   )
 }

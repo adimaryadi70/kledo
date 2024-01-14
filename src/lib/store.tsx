@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './feature/counter/counterSlice';
+import storageReducer from './feature/storage/storageStore';
 
 export const makeStore = () => {
     return configureStore({
       reducer: {
-        counter: counterReducer
+        counter: counterReducer,
+        storage: storageReducer
       }
-    })
+    });
 }
 
 // Infer the type of makeStore
