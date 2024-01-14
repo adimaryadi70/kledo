@@ -1,5 +1,7 @@
 import NextCrypto from 'next-crypto';
-const crypto = new NextCrypto('Mahmud');
+import * as cryptoTs from 'crypto';
+const crypto = new NextCrypto('XSZDWIIDKAJSDJJASDASDJIJWDIAJIDJIWDNN@@@_((@*!)!(#_@)_');
+import * as ls from "local-storage";
 
 export const NotificationError = (error: any) => {
     if (error.response !== undefined) {
@@ -14,12 +16,22 @@ export const ResponseServices: (data: any) => (boolean) = (data) => {
     return false;
 };
 
-export const SaveStorage = async () => {
-    const encrypted = await crypto.encrypt('hello!');
-    const decrypted = await crypto.decrypt(encrypted);
-    console.log(encrypted);
-    console.log(decrypted);
+export const SaveStorage = async (key: string, data: any) => {
+    let toJSON = JSON.stringify(data);
+    const encrypted = await crypto.encrypt(toJSON);
+    const hash = cryptoTs.createHash('sha256');
+    const hashKey = hash.update(key).digest('hex');
+    return ls.set<any>(hashKey, encrypted);
 };
 
-export const ReadLocalStorage = (key: string) => {
+export let ReadStorage = async (key: string) => {
+    const hash = cryptoTs.createHash('sha256');
+    const hashKey = hash.update(key).digest('hex');
+    let getStorage = ls.get<any>(hashKey);
+    let decryption = await crypto.decrypt(getStorage);
+    if (decryption !== null) {
+        let toParse = JSON.parse(decryption);
+        return toParse;
+    }
+    return null;
 };
