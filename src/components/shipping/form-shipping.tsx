@@ -29,6 +29,7 @@ export const FormShipping: React.FC<FormShippingComponent> = ({ isEdit , title }
     const DeleteShipping = () => {
         let read = ReadStorage('data_shipping');
         let req: ShippingModel = {
+            name: read.name,
             id: read.id
         };
         setLoadingDelete(true);
