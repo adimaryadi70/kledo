@@ -64,9 +64,9 @@ export default function Shipping() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {table.map((items) => {
+                                {table.map((items,index) => {
                                     return (
-                                        <tr className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
+                                        <tr key={index} className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
                                             <th className="px-6 py-4">{items.name}</th>
                                         </tr>
                                     )
