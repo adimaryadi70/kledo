@@ -5,7 +5,7 @@ import LayoutDashboard from "../page";
 import { PlusIcon } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/outline';
 import './shipping.css';
-import {useState} from "react";
+import {useState, useEffect } from "react";
 import {GetShippingServices} from "../../../services/shipping/shipping-services";
 import { ShippingModel } from '@/model/shipping/shipping-model';
 import { ResponseServices } from '@/utility/tools';
@@ -13,11 +13,16 @@ import { ResponseServices } from '@/utility/tools';
 export default function Shipping() {
     const router = useRouter();
     const [table, setTable] = useState<ShippingModel[]>([]);
+    const [filter, setFilter] = useState<string>('');
     const routerPage = (page: string) => {
         router.push(page);
     };
-    const GetShipping = () => {
-        GetShippingServices()
+
+    const GetShipping = (filter: ShippingModel) => {
+        let req: ShippingModel = {
+            name: filter.name
+        };
+        GetShippingServices(req)
             .then((result) => {
                 if (ResponseServices(result)) {
                     console.log(result);
@@ -29,8 +34,20 @@ export default function Shipping() {
             });
     };
     useState(() => {
-        GetShipping();
+        let req: ShippingModel = {
+            name: ''
+        };
+        GetShipping(req);
     });
+
+    const onEnter = (e: any) => {
+        if (e.key === "Enter") {
+            let req: ShippingModel = {
+                name: e.target.value
+            };
+            GetShipping(req);
+        }
+    };
 
     return (
         <LayoutDashboard>
@@ -49,7 +66,7 @@ export default function Shipping() {
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <SearchIcon className="w-5 h-5" />
                             </div>
-                            <input type="search" id="search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pt-[10px] pb-[10px]" placeholder="Search" required />
+                            <input type="search" onKeyDown={onEnter} id="search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pt-[10px] pb-[10px]" placeholder="Search" required />
                         </div>
                     </div>
                 </div>
