@@ -8,7 +8,7 @@ import './shipping.css';
 import {useState} from "react";
 import {GetShippingServices} from "../../../services/shipping/shipping-services";
 import { ShippingModel } from '@/model/shipping/shipping-model';
-import { ResponseServices } from '@/utility/tools';
+import { ResponseServices, SaveStorage } from '@/utility/tools';
 
 export default function Shipping() {
     const router = useRouter();
@@ -48,6 +48,11 @@ export default function Shipping() {
         }
     };
 
+    const onEdit = (data: ShippingModel) => {
+        SaveStorage('data_shipping', data);
+        router.push('/dashboard/shipping/edit');
+    }
+
     return (
         <LayoutDashboard>
             <div className={'w-full h-full rounded-lg bg-white p-[17px]'}>
@@ -82,7 +87,7 @@ export default function Shipping() {
                             <tbody>
                                 {table.map((items,index) => {
                                     return (
-                                        <tr key={index} className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
+                                        <tr key={index} onClick={() => onEdit(items)} className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
                                             <th className="px-6 py-4">{items.name}</th>
                                         </tr>
                                     )

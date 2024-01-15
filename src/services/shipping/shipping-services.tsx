@@ -12,5 +12,17 @@ export const GetShippingServices = (params: ShippingModel) => {
 export const PostShippingServices = (data: ShippingModel) => {
     let config: any = {};
     config = authHeader();
-    return AXIOS.post('v1/finance/shippingComps',data, config);
+    return AXIOS.post('/v1/finance/shippingComps',data, config);
+}
+
+export const PutShippingServices = (data: ShippingModel) => {
+    let config: any = {};
+    config = authHeader();
+    return AXIOS.put(`/v1/finance/shippingComps/${data.id}`,data, config);
+}
+
+export const DeleteShippingServices = (data: ShippingModel) => {
+    let config: any = {};
+    config = authHeader();
+    return AXIOS.delete(`/v1/finance/shippingComps/${data.id}`, config);
 }
