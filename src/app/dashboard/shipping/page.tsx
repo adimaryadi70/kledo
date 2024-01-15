@@ -5,7 +5,7 @@ import LayoutDashboard from "../page";
 import { PlusIcon } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/outline';
 import './shipping.css';
-import {useState, useEffect } from "react";
+import {useState} from "react";
 import {GetShippingServices} from "../../../services/shipping/shipping-services";
 import { ShippingModel } from '@/model/shipping/shipping-model';
 import { ResponseServices } from '@/utility/tools';
@@ -13,7 +13,6 @@ import { ResponseServices } from '@/utility/tools';
 export default function Shipping() {
     const router = useRouter();
     const [table, setTable] = useState<ShippingModel[]>([]);
-    const [filter, setFilter] = useState<string>('');
     const routerPage = (page: string) => {
         router.push(page);
     };
