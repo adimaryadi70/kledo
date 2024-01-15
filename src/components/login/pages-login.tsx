@@ -7,8 +7,7 @@ import {AuthenticationInterfaces} from "../../model/authentication/authenticatio
 import {useState} from "react";
 import {AuthenticationServices} from "../../services/authentication/authentication-services";
 import {NotificationError, ResponseServices} from "../../utility/tools";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/lib/store';
+import { useDispatch } from 'react-redux';
 import { SaveStorageRedux } from '@/lib/feature/storage/storageStore';
 
 export const PagesLogin = () => {
