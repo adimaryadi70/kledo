@@ -7,16 +7,22 @@ import { SearchIcon } from '@heroicons/react/outline';
 import './shipping.css';
 import {useState} from "react";
 import {GetShippingServices} from "../../../services/shipping/shipping-services";
+import { ShippingModel } from '@/model/shipping/shipping-model';
+import { ResponseServices } from '@/utility/tools';
 
 export default function Shipping() {
     const router = useRouter();
+    const [table, setTable] = useState<ShippingModel[]>([]);
     const routerPage = (page: string) => {
         router.push(page);
     };
     const GetShipping = () => {
         GetShippingServices()
             .then((result) => {
-                console.log(result);
+                if (ResponseServices(result)) {
+                    console.log(result);
+                    setTable(result.data.data);
+                }
             })
             .catch((e) => {
                 console.log(e);
@@ -58,12 +64,13 @@ export default function Shipping() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
-                                    <th className="px-6 py-4">Tony Stark</th>
-                                </tr>
-                                <tr className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
-                                    <th className="px-6 py-4">Ah weng</th>
-                                </tr>
+                                {table.map((items) => {
+                                    return (
+                                        <tr className={'odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'}>
+                                            <th className="px-6 py-4">{items.name}</th>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>
