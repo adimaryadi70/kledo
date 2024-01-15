@@ -33,7 +33,7 @@ export default function Shipping() {
                 console.log(e);
             });
     };
-    useState(() => {
+    useState<any>(() => {
         let req: ShippingModel = {
             name: ''
         };
