@@ -17,6 +17,10 @@ export const ResponseServices: (data: any) => (boolean) = (data) => {
     return false;
 };
 
+export const ClearStorage = () => {
+    return ls.clear();
+};
+
 export const SaveStorage = (key: string, data: any) => {
     let toJSON = JSON.stringify(data);
     const encrypted = CryptoJS.AES.encrypt(toJSON, key_crypto).toString();
