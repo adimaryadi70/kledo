@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {Header} from "../../components/common/header";
 import * as React from "react";
 import './profile.css';

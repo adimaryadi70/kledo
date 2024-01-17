@@ -6,6 +6,7 @@ import * as React from "react";
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { ReadStorage } from '@/utility/tools';
 
 export const Siderbar = () => {
     const pathname = usePathname();
@@ -25,7 +26,6 @@ export const Siderbar = () => {
             page: '/dashboard/shipping'
         }
     ]);
-
 
     return (
         <div className={'sidebar bg-[#F2F2F2] h-screen m-w-[215px]'}>
