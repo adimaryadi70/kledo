@@ -14,7 +14,7 @@ export const Header = () => {
         if (!read) {
             setisLogin(false);
         }
-    });
+    },[]);
 
     const routerPage = (page: string) => {
         router.push(page);
